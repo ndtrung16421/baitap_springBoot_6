@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+
+<!-- Head BEGIN -->
+<head th:fragment="head">
+  <meta charset="utf-8">
+  <title>NhomFS6</title>
+
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <meta content="Metronic Shop UI description" name="description">
+  <meta content="Metronic Shop UI keywords" name="keywords">
+  <meta content="keenthemes" name="author">
+
+  <meta property="og:site_name" content="-CUSTOMER VALUE-">
+  <meta property="og:title" content="-CUSTOMER VALUE-">
+  <meta property="og:description" content="-CUSTOMER VALUE-">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="-CUSTOMER VALUE-"><!-- link to image for socio -->
+  <meta property="og:url" content="-CUSTOMER VALUE-">
+
+  <link rel="shortcut icon" th:href="@{/assets/favicon.png}">
+
+  <!-- Fonts START -->
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|PT+Sans+Narrow|Source+Sans+Pro:200,300,400,600,700,900&amp;subset=all" rel="stylesheet" type="text/css"> 
+  <!-- Fonts END -->
+
+  <!-- Global styles START -->          
+  <link th:href="@{/assets/plugins/font-awesome/css/font-awesome.min.css}" rel="stylesheet">
+  <link th:href="@{/assets/plugins/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+  <!-- Global styles END --> 
+   
+  <!-- Page level plugin styles START -->
+  <link th:href="@{/assets/plugins/fancybox/source/jquery.fancybox.css}" rel="stylesheet">
+  <link th:href="@{/assets/plugins/owl.carousel/assets/owl.carousel.css}" rel="stylesheet">
+  <link th:href="@{/assets/plugins/uniform/css/uniform.default.css}" rel="stylesheet" type="text/css">
+  
+  <link href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css"><!-- for slider-range -->
+  
+  <link th:href="@{/assets/plugins/rateit/src/rateit.css}" rel="stylesheet" type="text/css">
+  <!-- Page level plugin styles END -->
+
+  <!-- Theme styles START -->
+  <link th:href="@{/assets/pages/css/components.css}" rel="stylesheet">
+  <link th:href="@{/assets/corporate/css/style.css}" rel="stylesheet">
+  <link th:href="@{/assets/pages/css/style-shop.css}" rel="stylesheet" type="text/css">
+  <link th:href="@{/assets/corporate/css/style-responsive.css}" rel="stylesheet">
+  <link th:href="@{/assets/corporate/css/themes/red.css}" rel="stylesheet" id="style-color">
+  <link th:href="@{/assets/corporate/css/custom.css}" rel="stylesheet">
+  <!-- Theme styles END -->
+  
+  <style>
+  #anh_kh {
+  border-radius: 70%   !important;
+}
+  
+  </style>
+  
+</head>
+<!-- Head END -->
+
+<!-- Body BEGIN -->
+<body class="ecommerce">
+    <!-- BEGIN STYLE CUSTOMIZER -->
+    
+    <!-- END BEGIN STYLE CUSTOMIZER --> 
+
+    <!-- BEGIN TOP BAR -->
+	<div th:fragment="header" class="pre-header">
+		<div style="width: 100%;">
+			<nav class="navbar navbar-expand-lg navbar-light bg-light"
+				style="padding-bottom: 10; padding-top: 10; margin-bottom: 0px ">
+				<div class="container-fluid"
+					style="background-color: #1b1f2e; padding-left: 120; padding-right: 120; width: 100%;padding-bottom: 15px; padding-top: 15px;">
+					<div>
+						<ul class="navbar-nav me-auto mb-2 mb-lg-0 list-unstyled list-inline">
+							<li class="nav-item"><a class="nav-link"
+								href="tel:0967494477"
+								style="text-decoration: none; color: white"><i
+									class="fa fa-phone" style="color: white; padding-right: 5px"></i>1900393939</a>
+							</li>
+							<li class="nav-item "><a class="nav-link"
+								href="mailto:vstore@gmail.com"
+								style="text-decoration: none; color: white;"><i
+									class="fa fa-envelope"
+									style="color: white; padding-right: 5px"></i>CoffeeT6@gmail.com</a>
+							</li>
+							<li class="langs-block nav-item"><a
+								href="javascript:void(0);" class="current nav-link" style="text-decoration: none; color: white;">VN</a>
+								<div class="langs-block-others-wrapper">
+									<div class="langs-block-others">
+										<a href="javascript:void(0);">ENG</a> <a
+											href="javascript:void(0);">Germany</a> <a
+											href="javascript:void(0);">Turkish</a>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div class="d-flex">
+						<ul class="navbar-nav me-auto mb-2 mb-lg-0 list-unstyled list-inline pull-right">
+						
+							<li class="nav-item" sec:authorize="isAnonymous()"><a style="color: white; padding-right: 5px" class="nav-link" th:href="@{/}"> Trang chủ </a></li>
+							<li class="nav-item" sec:authorize="isAnonymous()"><a style="color: white; padding-right: 5px" class="nav-link" th:href="@{/dang-nhap-khach-hang}"> Đăng nhập </a></li>
+							<li class="nav-item" sec:authorize="isAnonymous()"><a style="color: white; padding-right: 5px" class="nav-link" th:href="@{/dang-ky-khach-hang}"> Đăng ký </a></li>
+
+							<li class="nav-item"
+								th:if="${#authorization.expression('hasRole(''ROLE_KHACHHANG'')')}"><a style="color: white;" class="nav-link"
+								th:href="@{/ThongTinKhachHang}">Tài khoản</a></li>
+
+							<li class="nav-item"
+								th:if="${#authorization.expression('hasRole(''ROLE_KHACHHANG'')')}"><a style="color: white;" class="nav-link"
+								th:href="@{/DonHangKhachHang}">Đơn hàng</a></li>
+							<li class="nav-item"
+								th:if="${#authorization.expression('hasRole(''ROLE_KHACHHANG'')')}">
+
+								<img id="anh_kh"
+								th:if="${#authorization.expression('hasRole(''ROLE_KHACHHANG'')')}"
+								style="height: 20px; border-radius: 50%;"
+								th:src="${kh.khachhanganh}" class=" rounded-circle" alt="Berry">
+
+							</li>
+							<li  class="nav-item"
+								sec:authorize="isAuthenticated()"><a style="color: white;" class="nav-link"
+								th:href="@{/ThongTinKhachHang}"><span
+								sec:authentication="principal.username"></span></a>
+
+							</li>
+
+							<li class="nav-item" sec:authorize="isAuthenticated()"><a style="color: white;" class="nav-link"
+								th:href="@{/dangxuat}">Đăng xuất</a></li>
+
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</div>
+	</div>
+	<!-- END TOP BAR -->
+
+    <!-- BEGIN HEADER -->
+	<div class="header ">
+		<div style="width: 100%;">
+			<nav class="navbar navbar-expand-lg navbar-light bg-light"
+				style="padding-bottom: 10; padding-top: 10; margin-bottom: 0px ">
+				<div class="container-fluid"
+					style="background-color: #ffeb99; width: 100%;padding: 20px;height: 110px">
+						<a style="padding-bottom: 5px; padding-top: 5px;margin-right: 10px" class="site-logo"
+						th:href="@{/}"><img th:src="@{/pictures/logo/logo3.png}"
+						alt="Logo coffee shop"></a>
+					<div class="header-navigation ">
+						<ul
+							class="navbar-nav me-auto mb-2 mb-lg-0 list-unstyled list-inline">
+							<li class="nav-item"><a class="nav-link"
+								th:href="@{/GioHang}"
+								style="text-decoration: none; color: black"> GIỎ HÀNG</a></li>
+							<li class="nav-item"><a class="nav-link"
+								th:href="@{/DonHangKhachHang}"
+								style="text-decoration: none; color: black"> ĐƠN HÀNG</a></li>
+							<li class="menu-search nav-item ">
+								<div style="font-size: 20px; margin-bottom: 10px">
+									<form name="myForm" id="myForm"
+										th:action="@{/timsanpham/search}" method="Get">
+
+
+										<input id="message" style="width: 60%; color: black;"
+											type="text" name="s" placeholder="Tìm sản phẩm" />
+
+										<button type="submit" class="btn btn-primary"
+											style="margin-bottom: 6px">Tìm</button>
+										<div class="btn btn-info"
+											style="background-color: white; border: none; margin-bottom: 6px; padding-bottom: 0px"
+											id='btnTalk'>
+											<i id="microphone" style="font-size: 25px; color: black"
+												class="fa fa-microphone hover-transform"></i>
+										</div>
+									</form>
+								</div>
+							</li>
+
+						</ul>
+					</div>
+					<!-- BEGIN CART -->
+					<div class="top-cart-block d-flex">
+						<div class="top-cart-info">
+							<a href="javascript:void(0);" class="top-cart-info-count">
+								Tổng tiền: </a> <a href="javascript:void(0);"
+								class="top-cart-info-value"> <em> <strong
+									th:text="${#numbers.formatDecimal( tongtien , 0, 'POINT', 0, 'POINT')}">
+								</strong> vnd
+							</em>
+							</a>
+						</div>
+						<i class="fa fa-shopping-cart"></i>
+
+						<div class="top-cart-content-wrapper">
+							<div class="top-cart-content">
+
+								<!-- Bắt đầu hiển thị sản phẩm trong giỏ hàng -->
+
+								<ul class="scroller" style="height: 250px;">
+
+									<!-- <th:block th:each="tbl : ${listCustomer}">
+							<li class="list-group-item clearfix"><a
+								href="shop-product-list.html" th:text="${tbl.name}"><i
+									class="fa fa-angle-right"></i> </a></li>
+
+						</th:block> -->
+									<th:block th:each="ghkh : ${listgiohang}">
+										<li><a th:href="@{/ChiTietSanPham/} + ${ghkh.sanphamid}"><img
+												th:src="${   ghkh.getProduct().getSanphamanhchinh()   }"
+												alt="image product" width="37" height="34"></a> <span
+											class="cart-content-count" th:text="X+${ghkh.soluong }">
+										</span> <strong><a href=""
+												th:text="${ghkh.getProduct().getSanphamten() }"> </a></strong> <em
+											th:text="${#numbers.formatDecimal( ghkh.getProduct().getSanphamgiatien() , 0, 'POINT', 0, 'POINT')}">
+										</em>
+
+
+											<form th:action="@{/xoagiohang}" method="post">
+
+												<input type="hidden" name="giohangid"
+													th:value="  ${ghkh.giohangid} " />
+
+												<button class="del-goods" type="submit"></button>
+
+											</form></li>
+									</th:block>
+								</ul>
+
+								<!-- kết thúc hiển thị sản phẩm trong giỏ hàng -->
+
+
+								<div class="text-right">
+									<a th:href="@{/GioHang}" class="btn btn-primary">Giỏ hàng</a>
+
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--END CART -->
+				</div>
+			</nav>
+		</div>
+	</div>
+	<!-- Header END -->
+
+	<!-- BEGIN PRE-FOOTER -->
+
+	<div th:fragment="pre-footer" class="pre-footer">
+		<footer style="font-size: 14px; color: black; font-family: serif;padding-left: 120; padding-right: 120; width: 100%;">
+			<div style="background-color: #ffeb99;">
+				<div class="col-md-12 text-center">
+					<a href="/"><img src="/pictures/logo/logo.png" /></a> <br>
+					<h3 style="color: #FF8400; font-weight: bold">NƯỚC NGON TẠI
+						NHÀ</h3>
+				</div>
+				<div class="container">
+					<div class="row">
+						<div class="col-md-4">
+							<p>
+								<span style="font-size: 18px; font-weight: bold">Đặt hàng</span>
+							</p>
+							<p style="margin: 0;">Đặt hàng và thu tiền tận nơi.</p>
+							<br>
+							<p class="boxed-content-title">
+								<i class="fa fa-phone-square"></i> 1900393939
+							</p>
+							<a style="color: black" href="https://www.facebook.com/">
+								<p>
+									<i class="fa fa-facebook-square"></i>
+									Facebook.com/www.cfteam6.vn
+								</p>
+							</a>
+						</div>
+						<div class="col-md-4">
+							<p>
+								<span style="font-size: 18px; font-weight: bold">Phục vụ</span>
+							</p>
+							<p>Với đội ngũ nhân viên được đào tạo chuyên môn cao.</p>
+							<p>Cam kết phục vụ và hỗ trợ khách hàng tận tình và chu đáo
+								nhất</p>
+						</div>
+						<div class="col-md-4">
+							<p>
+								<span style="font-size: 18px; font-weight: bold">Địa chỉ</span>
+							</p>
+							<p>22 Đường 3/2, Xuân Khánh, Ninh Kiều, TP Cần Thơ</p>
+							<ul class="social-icons">
+								<li><a style="color: black" class="rss" data-original-title="rss"
+									href="javascript:;"></a></li>
+								<li><a style="color: black" class="facebook" data-original-title="facebook"
+									href="javascript:;"></a></li>
+								<li><a style="color: black" class="twitter" data-original-title="twitter"
+									href="javascript:;"></a></li>
+								<li><a style="color: black" class="googleplus" data-original-title="googleplus"
+									href="javascript:;"></a></li>
+								<li><a style="color: black" class="linkedin" data-original-title="linkedin"
+									href="javascript:;"></a></li>
+								<li><a style="color: black" class="youtube" data-original-title="youtube"
+									href="javascript:;"></a></li>
+								<li><a style="color: black" class="vimeo" data-original-title="vimeo"
+									href="javascript:;"></a></li>
+								<li><a style="color: black" class="skype" data-original-title="skype"
+									href="javascript:;"></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="text-center"
+					style="padding-bottom: 10px; padding-top: 10px">Copyright ©
+					Team 6. All Rights Reserved.</div>
+			</div>
+		</footer>
+	</div>
+
+	<!-- END PRE-FOOTER -->
+
+    <!-- BEGIN FOOTER -->
+    
+    <!-- END FOOTER -->
+
+    <!-- BEGIN fast view of a product -->
+    
+    <!-- END fast view of a product -->
+	
+	<!-- Load javascripts at bottom, this will reduce page load time -->
+    <!-- BEGIN CORE PLUGINS(REQUIRED FOR ALL PAGES) -->
+    <!--[if lt IE 9]>
+    <script src="assets/plugins/respond.min.js"></script>  
+    <![endif]-->  
+    
+    <div th:fragment="script_kh">
+    <script th:src="@{/assets/plugins/jquery.min.js}" type="text/javascript"></script>
+    <script th:src="@{/assets/plugins/jquery-migrate.min.js}" type="text/javascript"></script>
+    <script th:src="@{/assets/plugins/bootstrap/js/bootstrap.min.js}" type="text/javascript"></script>      
+    <script th:src="@{/assets/corporate/scripts/back-to-top.js}" type="text/javascript"></script>
+    <script th:src="@{/assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js}" type="text/javascript"></script>
+    <!-- END CORE PLUGINS -->
+
+    <!-- BEGIN PAGE LEVEL JAVASCRIPTS (REQUIRED ONLY FOR CURRENT PAGE) -->
+    <script th:src="@{/assets/plugins/fancybox/source/jquery.fancybox.pack.js}" type="text/javascript"></script><!-- pop up -->
+    <script th:src="@{/assets/plugins/owl.carousel/owl.carousel.min.js}" type="text/javascript"></script><!-- slider for products -->
+    <script th:src='@{/assets/plugins/zoom/jquery.zoom.min.js}' type="text/javascript"></script><!-- product zoom -->
+    <script th:src="@{/assets/plugins/bootstrap-touchspin/bootstrap.touchspin.js}" type="text/javascript"></script><!-- Quantity -->
+    <script th:src="@{/assets/plugins/uniform/jquery.uniform.min.js}" type="text/javascript"></script>
+    <script th:src="@{/assets/plugins/rateit/src/jquery.rateit.js}" type="text/javascript"></script>
+    
+    
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js" type="text/javascript"></script><!-- for slider-range -->
+
+    <script th:src="@{/assets/corporate/scripts/layout.js}" type="text/javascript"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            Layout.init();    
+            Layout.initOWL();
+            Layout.initTwitter();
+            Layout.initImageZoom();
+            Layout.initTouchspin();
+            Layout.initUniform();
+            Layout.initSliderRange();
+        });
+    </script>
+    <script>
+		var message = document.querySelector('#message');
+
+		var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
+		var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList;
+
+		var grammar = '#JSGF V1.0;'
+
+		var recognition = new SpeechRecognition();
+		var speechRecognitionList = new SpeechGrammarList();
+		speechRecognitionList.addFromString(grammar, 1);
+		recognition.grammars = speechRecognitionList;
+		recognition.lang = 'vi-VN';
+		recognition.interimResults = false;
+
+		recognition.onresult = function(event) {
+			var lastResult = event.results.length - 1;
+			var content = event.results[lastResult][0].transcript;
+			// message.textContent = 'Voice Input: ' + content ;
+
+			var result9 = content.substring(0, content.length - 1);
+
+			document.getElementById("message").value = result9;
+
+			// location.replace('timsanpham/search/'+result9);
+			document.forms["myForm"].submit();
+
+		};
+
+		recognition.onspeechend = function() {
+			recognition.stop();
+			var res = document.getElementById("microphone");
+			res.style.color = "white";
+
+		};
+
+		recognition.onerror = function(event) {
+			var res = document.getElementById("microphone");
+			res.style.color = "white";
+			message.textContent = 'Error occurred in recognition: '
+					+ event.error;
+		}
+
+		document.querySelector('#btnTalk').addEventListener('click',
+				function() {
+					recognition.start();
+					var res = document.getElementById("microphone");
+					res.style.color = "red";
+				});
+	</script>
+
+	
+    <!-- END PAGE LEVEL JAVASCRIPTS -->
+    </div>
+</body>
+<!-- END BODY -->
+</html>
